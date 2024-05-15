@@ -16,8 +16,8 @@ public class Main {
         System.out.println();
 
         for(int x = 0; x < studentNum; x++){
-            studentName = getValidStrInput("classMarksTrackerBinary.Student " + (x+1) + " Name: ", studentList);
-            studentMark = getValidIntInput("classMarksTrackerBinary.Student " + (x+1) + " Mark: ", 0, 100);
+            studentName = getValidStrInput("Student " + (x+1) + " Name: ", studentList);
+            studentMark = getValidIntInput("Student " + (x+1) + " Mark: ", 0, 100);
 
             if(studentMark == 50){
                 // a value of 0 means that the value 50 was inputted as a student mark
