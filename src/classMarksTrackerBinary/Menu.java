@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Menu{
+
+    // Displays menu
     public static void print(){
         System.out.println("Menu: " +
                 "\n1. Display all student data (sorted by mark)" +
@@ -12,6 +14,7 @@ public class Menu{
                 "\n4. Get class average\n");
     }
 
+    // Performs menu actions that user selects
     public static void performAction(int action, int fiftyIndex, StudentList studentList){
         switch(action){
             case 0:
@@ -35,6 +38,7 @@ public class Menu{
         }
     }
 
+    // Searches for mark inputted by user
     private static void searchMark(int fiftyIndex, StudentList studentList, int searchedMark){
         int searchedMarkIndex = studentList.binarySearch(searchedMark);
 
@@ -46,24 +50,25 @@ public class Menu{
         }
     }
 
+    // Displays list of failing students, ordered by mark (decreasing to increasing)
     private static void findStrugglingStudents(int fiftyIndex, StudentList studentList){
         ArrayList<Student> students = studentList.getList();
         int failedMarkIndex;
 
         if(fiftyIndex == -1){
-            // if a student scored a mark of 50, find index of student with mark of 50
+            // If a student scored a mark of 50, find index of student with mark of 50
             failedMarkIndex = studentList.binarySearch(50);
         }
         else{
-            // if no students scored a mark of 50, use index of the reference student
+            // If no students scored a mark of 50, use index of the reference student created by the program
             failedMarkIndex = fiftyIndex;
         }
 
-        // if no students have a mark below 50
+        // If no students have a mark below 50, display that there are no failing students
         if (failedMarkIndex == 0){
             System.out.println("There are no struggling students.");
         }
-        // if at least one student has a mark below 50
+        // If at least one student has a mark below 50, display failing students
         else{
             System.out.println("Struggling students (name: mark):");
             for(int x=0; x<failedMarkIndex; x++){
@@ -76,7 +81,7 @@ public class Menu{
         System.out.println();
     }
 
-    // Get valid integer input
+    // Get valid mark input
     private static int getValidMarkInput(){
         Scanner in = new Scanner(System.in);
         int input = -1;

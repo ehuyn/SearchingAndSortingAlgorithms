@@ -10,6 +10,7 @@ public class Main {
 
         System.out.println("Welcome to the grocery list manager!\n");
 
+        // Display menu
         do{
             System.out.println("Menu: " +
                     "\n1. Search/Add item" +
@@ -18,6 +19,7 @@ public class Main {
             action = getValidIntInput("Select an action (0 to quit): ");
             System.out.println();
 
+            // Perform selected menu actions
             switch(action){
                 case 1:
                     itemName = getValidStrInput("Item to search: ");
@@ -32,9 +34,12 @@ public class Main {
                         System.out.println("Invalid action. Input must be in between " + 0 + " and " + 2 + ", inclusive.\n");
                     }
             }
+            // Until user enters 0 to quit
         } while(action != 0);
 
+        // Display unsorted grocery list
         listManager.displayList("Unsorted");
+        // Display sorted grocery list
         listManager.sortGroceryList();
         listManager.displayList("Sorted");
         System.out.println("Goodbye!");

@@ -11,17 +11,16 @@ public class Main {
         int fiftyIndex = -1;
         StudentList studentList = new StudentList();
 
-        System.out.println("Welcome to the class marks tracker!\n");
+        // Get the number of students
         int studentNum = getValidIntInput("Enter the number of students in your class: ", 1, Integer.MAX_VALUE);
         System.out.println();
 
+        // Get student data (name and mark)
         for(int x = 0; x < studentNum; x++){
             studentName = getValidStrInput("Student " + (x+1) + " Name: ", studentList);
             studentMark = getValidIntInput("Student " + (x+1) + " Mark: ", 0, 100);
 
             if(studentMark == 50){
-                // a value of 0 means that the value 50 was inputted as a student mark
-                // a value of -1 means that no student scored a mark of 50
                 studentWith50Mark = true;
             }
 
@@ -29,23 +28,27 @@ public class Main {
             studentList.addStudent(studentName, studentMark);
         }
 
-        // if no students scored a mark of 50
-        if(studentWith50Mark == false){
+        // If no students scored a mark of 50
+        if(!studentWith50Mark){
             // add an empty student with a mark of 50
             // this will be a reference value for finding struggling students later on
             studentList.addStudent("", 50);
+            // Sort array list
             studentList.bubbleSort();
             fiftyIndex = studentList.binarySearch(50);
         }
+        // If at least one student scored a mark of 50, sort array list
         else{
             studentList.bubbleSort();
         }
 
+        // Display menu and perform selected actions
         do{
             Menu.print();
             action = getValidIntInput("Select an action (0 to quit): ", Integer.MIN_VALUE, Integer.MAX_VALUE);
             System.out.println();
             Menu.performAction(action, fiftyIndex, studentList);
+            // until user selects to quit program
         } while(action != 0);
     }
 
@@ -101,13 +104,13 @@ public class Main {
             }
             else if(!input.matches("[a-zA-Z ]+")){
                 isInvalid = true;
-                System.out.println("classMarksTrackerBinary.Student's name cannot contain characters other than letters or spaces.\n");
+                System.out.println("Student's name cannot contain characters other than letters or spaces.\n");
             }
             else{
                 for(Student student : studentList.getList()){
                     if(student.getName().equals(input)){
                         isInvalid = true;
-                        System.out.println("classMarksTrackerBinary.Student already exists.\n");
+                        System.out.println("Student already exists.\n");
                         break;
                     }
                 }
